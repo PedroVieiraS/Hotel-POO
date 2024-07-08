@@ -28,7 +28,7 @@ public class PooApplication {
 
 		LimpaTerminal.limpa_windows();
 
-		System.out.println("ola");
+		System.out.println("ola, mundo");
 	}
 
 }
