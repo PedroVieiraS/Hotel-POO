@@ -1,23 +1,36 @@
 package com.poo.hotel.poo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Login {
-    private static final String VISITANTE_LOGIN = "visitante";
-    private static final String VISITANTE_SENHA = "123";
-    private static final String FUNCIONARIO_LOGIN = "funcionario";
-    private static final String FUNCIONARIO_SENHA = "456";
-    private static final String GESTOR_LOGIN = "gestor";
-    private static final String GESTOR_SENHA = "789";
+    private static final List<Usuario> usuarios = new ArrayList<>();
+
+    // Inicializar com alguns usuários padrão
+    static {
+        usuarios.add(new Usuario("visitante", "123", "visitante"));
+        usuarios.add(new Usuario("funcionario", "456", "funcionario"));
+        usuarios.add(new Usuario("gestor", "789", "gestor"));
+    }
 
     public static boolean autenticar(String login, String senha, String tipoUsuario) {
-        switch (tipoUsuario.toLowerCase()) {
-            case "visitante":
-                return login.equals(VISITANTE_LOGIN) && senha.equals(VISITANTE_SENHA);
-            case "funcionario":
-                return login.equals(FUNCIONARIO_LOGIN) && senha.equals(FUNCIONARIO_SENHA);
-            case "gestor":
-                return login.equals(GESTOR_LOGIN) && senha.equals(GESTOR_SENHA);
-            default:
-                return false;
+        for (Usuario usuario : usuarios) {
+            if (usuario.getLogin().equals(login) && usuario.getSenha().equals(senha) && usuario.getTipoUsuario().equalsIgnoreCase(tipoUsuario)) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    public static boolean cadastrarUsuario(String login, String senha, String tipoUsuario) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getLogin().equals(login)) {
+                System.out.println("Usuário já existe!");
+                return false;
+            }
+        }
+        usuarios.add(new Usuario(login, senha, tipoUsuario));
+        System.out.println("Usuário cadastrado com sucesso!");
+        return true;
     }
 }
