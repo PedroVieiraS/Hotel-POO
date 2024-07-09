@@ -57,21 +57,25 @@ public class MenuGestor {
 
     private void verificarFaturamento() {
         System.out.println("### VERIFICAR FATURAMENTO DO HOTEL ###");
-
+        double faturamento = BancoDeDados.calcularFaturamento();
+        System.out.println("O faturamento total do hotel é: R$ " + faturamento);
     }
 
     private void verificarVacancia() {
         System.out.println("### VERIFICAR NÍVEL DE VACÂNCIA ###");
-
+        double nivelVacancia = BancoDeDados.calcularNivelVacancia();
+        System.out.println("O nível de vacância do hotel é: " + nivelVacancia + "%");
     }
 
     private void verificarDiasMenorVacancia() {
         System.out.println("### VERIFICAR DIAS DA SEMANA DE MENOR VACÂNCIA ###");
-
+        String diasMenorVacancia = BancoDeDados.calcularDiasMenorVacancia();
+        System.out.println("Os dias da semana de menor vacância são: " + diasMenorVacancia);
     }
 
     private void verificarIndicadoresDesempenho() {
         System.out.println("### VERIFICAR INDICADORES DE DESEMPENHO ###");
-
+        String indicadores = BancoDeDados.obterIndicadoresDesempenho();
+        System.out.println("Indicadores de desempenho:\n" + indicadores);
     }
 }

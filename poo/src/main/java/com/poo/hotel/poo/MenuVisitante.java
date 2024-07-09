@@ -1,4 +1,5 @@
 package com.poo.hotel.poo;
+
 import java.util.Scanner;
 
 public class MenuVisitante {
@@ -94,11 +95,29 @@ public class MenuVisitante {
 
     private void avaliarAtendimento() {
         System.out.println("### AVALIAR ATENDIMENTO ###");
+        System.out.print("Digite sua avaliação (1 a 5): ");
+        int avaliacao = scanner.nextInt();
+        scanner.nextLine(); 
 
+        System.out.print("Deixe seu comentário: ");
+        String comentario = scanner.nextLine();
+
+        Avaliacao atendimento = new Avaliacao(avaliacao, comentario);
+        BancoDeDados.adicionarAvaliacaoAtendimento(atendimento);
+        System.out.println("Obrigado pela sua avaliação!");
     }
 
     private void avaliarQualidadeHospedagem() {
         System.out.println("### AVALIAR QUALIDADE DA HOSPEDAGEM ###");
+        System.out.print("Digite sua avaliação (1 a 5): ");
+        int avaliacao = scanner.nextInt();
+        scanner.nextLine(); 
 
+        System.out.print("Deixe seu comentário: ");
+        String comentario = scanner.nextLine();
+
+        Avaliacao qualidadeHospedagem = new Avaliacao(avaliacao, comentario);
+        BancoDeDados.adicionarAvaliacaoQualidadeHospedagem(qualidadeHospedagem);
+        System.out.println("Obrigado pela sua avaliação!");
     }
 }
