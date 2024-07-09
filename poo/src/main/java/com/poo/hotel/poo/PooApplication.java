@@ -31,6 +31,7 @@ public class PooApplication {
     }
 
     private static void exibirMenuInicial() {
+		System.out.println("### Bem vindo ao Hotel Senai ###");
         System.out.println("### MENU INICIAL ###");
         System.out.println("1. Menu Visitante");
         System.out.println("2. Menu Funcionário");
