@@ -1,6 +1,6 @@
 package com.poo.hotel.poo;
 
-public class ServicoQuarto {
+class ServicoQuarto {
     private String descricao;
     private boolean realizado;
 
@@ -23,3 +23,4 @@ public class ServicoQuarto {
         this.realizado = true;
     }
 }
+

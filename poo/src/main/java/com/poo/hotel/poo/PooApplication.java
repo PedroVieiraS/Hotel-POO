@@ -25,7 +25,12 @@ public class PooApplication {
 	private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        
+        
         while (true) {
+            for (int i = 0; i < Login.usuarios.size(); i++) {
+                System.out.println(Login.usuarios.get(i).getLogin());
+            }
             exibirMenuInicial();
         }
     }
