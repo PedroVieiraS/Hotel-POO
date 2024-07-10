@@ -2,29 +2,28 @@ package com.poo.hotel.poo;
 
 public class Quarto {
     private int numero;
-    private boolean disponivel;
+    private String tipo;
+    private boolean ocupado;
 
-    public Quarto(int numero) {
+    public Quarto(int numero, String tipo) {
         this.numero = numero;
-        this.disponivel = true;
+        this.tipo = tipo;
+        this.ocupado = false;
     }
 
-    // Getters
     public int getNumero() {
         return numero;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
+    public String getTipo() {
+        return tipo;
     }
 
-    // Métodos
-    public void reservar() {
-        this.disponivel = false;
+    public boolean isOcupado() {
+        return ocupado;
     }
 
-    public void liberar() {
-        this.disponivel = true;
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
-
 }

@@ -1,18 +1,19 @@
 package com.poo.hotel.poo;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Reserva {
     private Cliente cliente;
     private Quarto quarto;
-    private LocalDate dataReserva;
+    private Date dataInicio;
+    private Date dataFim;
 
-    public Reserva(Cliente cliente, Quarto quarto) {
+    public Reserva(Cliente cliente, Quarto quarto, Date dataInicio, Date dataFim) {
         this.cliente = cliente;
         this.quarto = quarto;
-        this.dataReserva = LocalDate.now();
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
     }
 
-    // Getters
     public Cliente getCliente() {
         return cliente;
     }
@@ -21,7 +22,11 @@ public class Reserva {
         return quarto;
     }
 
-    public LocalDate getDataReserva() {
-        return dataReserva;
+    public Date getDataInicio() {
+        return dataInicio;
+    }
+
+    public Date getDataFim() {
+        return dataFim;
     }
 }

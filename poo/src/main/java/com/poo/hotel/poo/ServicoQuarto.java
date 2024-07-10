@@ -1,25 +1,14 @@
 package com.poo.hotel.poo;
+import java.util.Date;
 
 public class ServicoQuarto {
+    private Date data;
     private String descricao;
-    private boolean realizado;
 
-    public ServicoQuarto(String descricao) {
+    public ServicoQuarto(Date data, String descricao) {
+        this.data = data;
         this.descricao = descricao;
-        this.realizado = false;
     }
 
-    // Getters
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public boolean isRealizado() {
-        return realizado;
-    }
-
-    // Método
-    public void realizar() {
-        this.realizado = true;
-    }
+    // Métodos para agendar serviço de quarto
 }
