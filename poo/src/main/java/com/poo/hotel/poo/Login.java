@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Login {
-    private static final List<Usuario> usuarios = new ArrayList<>();
+    public static final List<Usuario> usuarios = new ArrayList<>();
 
     // Inicializar com alguns usuários padrão
     static {
