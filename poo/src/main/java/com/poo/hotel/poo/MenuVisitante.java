@@ -1,4 +1,5 @@
 package com.poo.hotel.poo;
+
 import java.util.Scanner;
 
 public class MenuVisitante {
@@ -30,7 +31,7 @@ public class MenuVisitante {
         System.out.println("4. Sair");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         switch (opcao) {
             case 1:
@@ -94,11 +95,47 @@ public class MenuVisitante {
 
     private void avaliarAtendimento() {
         System.out.println("### AVALIAR ATENDIMENTO ###");
-
     }
 
+    /**
+     * 
+     */
     private void avaliarQualidadeHospedagem() {
+
         System.out.println("### AVALIAR QUALIDADE DA HOSPEDAGEM ###");
 
+        System.out.print("Avalie o quarto de 1 a 10: ");
+        int quarto = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Avalie o banheiro de 1 a 10: ");
+        int banheiro = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Avalie a limpeza de 1 a 10: ");
+        int limpeza = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Avalie a localidade de 1 a 10: ");
+        int localidade = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Avalie o café da manhã de 1 a 10: ");
+        int cafe = scanner.nextInt();
+        scanner.nextLine(); 
+        System.out.print("Avalie o atendimento de 1 a 10: ");
+        int atendimento = scanner.nextInt();
+        scanner.nextLine(); 
+
+        double media = calcularMedia(quarto, banheiro, limpeza, localidade, cafe, atendimento);
+
+        System.out.println("Avaliações registradas com sucesso!");
+        System.out.println("Média geral das avaliações: " + media);
+
+        }
+
+        private double calcularMedia(int... avaliacoes) {
+            int soma = 0;
+            for (int avaliacao : avaliacoes) {
+                soma += avaliacao;
+            }
+            return (double) soma / avaliacoes.length; 
+        
     }
 }
