@@ -25,6 +25,24 @@ public class PooApplication {
 	private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        for (Quarto quarto : BancoDeDados.getQuartos()) {
+            System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
+        }
+
+        Cliente cliente = new Cliente("Pedro Vieira", "12345678901");
+        Quarto novoQuarto = new Quarto(11, cliente, true);
+        BancoDeDados.adicionarQuarto(novoQuarto);
+
+        // Exibindo os quartos após adicionar um novo quarto
+        System.out.println("\nApós adicionar um novo quarto:");
+        for (Quarto quarto : BancoDeDados.getQuartos()) {
+            System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
+        }
+
+        for(Quarto quarto : BancoDeDados.getQuartos()){
+            System.out.println(quarto.getNomeCliente());
+        }
         
         
         while (true) {
@@ -43,6 +61,7 @@ public class PooApplication {
         System.out.println("3. Menu Gestor");
         System.out.println("4. Cadastro de Usuário");
         System.out.println("5. Sair");
+        System.out.println();
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine(); 
@@ -66,6 +85,11 @@ public class PooApplication {
             case 5:
                 System.out.println("Saindo do sistema...");
                 System.exit(0);
+                break;
+            case 6:
+                for (Quarto quarto : BancoDeDados.getQuartos()) {
+                    System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo()+", "+ quarto.getNomeCliente());
+                }
                 break;
             default:
                 System.out.println("Opção inválida!");

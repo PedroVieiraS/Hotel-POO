@@ -11,6 +11,7 @@ public class Login {
         usuarios.add(new Usuario("visitante", "123", "visitante"));
         usuarios.add(new Usuario("funcionario", "456", "funcionario"));
         usuarios.add(new Usuario("gestor", "789", "gestor"));
+        usuarios.add(new Usuario("cliente", "123", "pedro"));
     }
 
     public static boolean autenticar(String login, String senha, String tipoUsuario) {
