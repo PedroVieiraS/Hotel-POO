@@ -1,6 +1,7 @@
 package com.poo.hotel.poo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class BancoDeDados {
     private List<Cliente> clientes;
@@ -10,6 +11,7 @@ public class BancoDeDados {
     private List<ServicoQuarto> servicosQuarto;
     private String loginAdmin;
     private String senhaAdmin;
+    private Scanner scanner = new Scanner(System.in);
 
     public BancoDeDados() {
         clientes = new ArrayList<>();
@@ -107,4 +109,21 @@ public class BancoDeDados {
     public List<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
+
+    public int lerAvaliacao() {
+        int avaliacao = 0;
+        while (avaliacao < 1 || avaliacao > 5) {
+            try {
+                avaliacao = scanner.nextInt();
+                if (avaliacao < 1 || avaliacao > 5) {
+                    System.out.print("Valor inválido. Avalie de 1 a 5: ");
+                }
+            } catch (Exception e) {
+                System.out.print("Entrada inválida. Avalie de 1 a 5: ");
+                scanner.next(); // Limpar o buffer do scanner
+            }
+        }
+        return avaliacao;
+    }
+
 }
