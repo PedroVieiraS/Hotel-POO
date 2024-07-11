@@ -1,12 +1,16 @@
 package com.poo.hotel.poo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuVisitante {
     private Scanner scanner;
+    private List<AvaliacaoQualidade> avaliacoes;
 
     public MenuVisitante() {
         this.scanner = new Scanner(System.in);
+        this.avaliacoes = new ArrayList<>(); 
     }
 
     public void exibirMenu() {
@@ -95,47 +99,39 @@ public class MenuVisitante {
 
     private void avaliarAtendimento() {
         System.out.println("### AVALIAR ATENDIMENTO ###");
+
+        System.out.print("Avalie o atendimento de 1 a 10: ");
+        int atendimento = scanner.nextInt();
+        scanner.nextLine();
+
+        AvaliacaoQualidade avaliacao = new AvaliacaoQualidade(0, 0, 0, 0, 0, atendimento);
+        avaliacoes.add(avaliacao);
+
+        System.out.println("Avaliação de atendimento registrada com sucesso!");
     }
 
-    /**
-     * 
-     */
     private void avaliarQualidadeHospedagem() {
-
         System.out.println("### AVALIAR QUALIDADE DA HOSPEDAGEM ###");
 
         System.out.print("Avalie o quarto de 1 a 10: ");
         int quarto = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
         System.out.print("Avalie o banheiro de 1 a 10: ");
         int banheiro = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
         System.out.print("Avalie a limpeza de 1 a 10: ");
         int limpeza = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
         System.out.print("Avalie a localidade de 1 a 10: ");
         int localidade = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
         System.out.print("Avalie o café da manhã de 1 a 10: ");
         int cafe = scanner.nextInt();
-        scanner.nextLine(); 
-        System.out.print("Avalie o atendimento de 1 a 10: ");
-        int atendimento = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
-        double media = calcularMedia(quarto, banheiro, limpeza, localidade, cafe, atendimento);
+        AvaliacaoQualidade avaliacao = new AvaliacaoQualidade(quarto, banheiro, limpeza, localidade, cafe, 0);
+        avaliacoes.add(avaliacao);
 
-        System.out.println("Avaliações registradas com sucesso!");
-        System.out.println("Média geral das avaliações: " + media);
-
-        }
-
-        private double calcularMedia(int... avaliacoes) {
-            int soma = 0;
-            for (int avaliacao : avaliacoes) {
-                soma += avaliacao;
-            }
-            return (double) soma / avaliacoes.length; 
-        
+        System.out.println("Avaliações de qualidade da hospedagem registradas com sucesso!");
     }
 }

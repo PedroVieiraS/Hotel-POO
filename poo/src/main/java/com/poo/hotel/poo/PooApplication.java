@@ -1,28 +1,10 @@
 package com.poo.hotel.poo;
+
 import java.util.Scanner;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
 public class PooApplication {
-	
-	public class LimpaTerminal {
-		static void limpa_windows() {
-			try {
-				if (System.getProperty("os.name").contains("Windows")) {
-					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-				} else {
-					System.out.println("Este comando só funciona no Windows.");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
-		}
-
-	}
-	
-	private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         while (true) {
@@ -52,7 +34,8 @@ public class PooApplication {
                 menuFuncionario.exibirMenu();
                 break;
             case 3:
-                MenuGestor menuGestor = new MenuGestor();
+                // Corrigindo a criação do MenuGestor
+                MenuGestor menuGestor = new MenuGestor(null); // Aqui você deve passar a lista de avaliações
                 menuGestor.exibirMenu();
                 break;
             case 4:
@@ -82,6 +65,4 @@ public class PooApplication {
             System.out.println("Falha no cadastro do usuário.");
         }
     }
-
-
 }
