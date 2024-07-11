@@ -5,54 +5,39 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PooApplication {
-	
-	public class LimpaTerminal {
-		static void limpa_windows() {
-			try {
-				if (System.getProperty("os.name").contains("Windows")) {
-					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-				} else {
-					System.out.println("Este comando só funciona no Windows.");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-	
-	private static Scanner scanner = new Scanner(System.in);
-
+    public static Scanner scanner = new Scanner(System.in);
+    
     public static void main(String[] args) {
-
-        for (Quarto quarto : BancoDeDados.getQuartos()) {
-            System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
-        }
-
-        Cliente cliente = new Cliente("Pedro Vieira", "12345678901");
-        Quarto novoQuarto = new Quarto(11, cliente, true);
-        BancoDeDados.adicionarQuarto(novoQuarto);
-
-        // Exibindo os quartos após adicionar um novo quarto
-        System.out.println("\nApós adicionar um novo quarto:");
-        for (Quarto quarto : BancoDeDados.getQuartos()) {
-            System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
-        }
-
-        for(Quarto quarto : BancoDeDados.getQuartos()){
-            System.out.println(quarto.getNomeCliente());
-        }
         
+        
+        // Alimenta o ArrayList de quartos
+        Quarto.gerarQuartos();
+        // Alimenta o ArrayList de clientes
+        Cliente.gerarClientes();
+        // Alimenta o banco de dados de reservas
+        Reserva.gerarReservas();
         
         while (true) {
-            for (int i = 0; i < Login.usuarios.size(); i++) {
-                System.out.println(Login.usuarios.get(i).getLogin());
-            }
+            
             exibirMenuInicial();
         }
     }
-
+    
+    public class LimpaTerminal {
+        static void limpa_windows() {
+            try {
+                if (System.getProperty("os.name").contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+				} else {
+                    System.out.println("Este comando só funciona no Windows.");
+				}
+			} catch (Exception e) {
+                e.printStackTrace();
+			}
+            
+		}
+	}
+    
     private static void exibirMenuInicial() {
         System.out.println("### Bem vindo ao Hotel Senai ###");
         System.out.println("### MENU INICIAL ###");
@@ -88,7 +73,7 @@ public class PooApplication {
                 break;
             case 6:
                 for (Quarto quarto : BancoDeDados.getQuartos()) {
-                    System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo()+", "+ quarto.getNomeCliente());
+                    System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
                 }
                 break;
             default:

@@ -1,23 +1,20 @@
 package com.poo.hotel.poo;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Quarto {
+    private static ArrayList<Quarto> quartos = new ArrayList<Quarto>();
+    
+    // Atributos
     private int numero;
-    private Cliente cliente;
-    private boolean disponivel;
     private boolean estaLimpo;
-    private LocalDateTime tempoEntrada;
+    
 
-    public Quarto(int numero, Cliente cliente, boolean estaLimpo) {
+    // Construtor
+    public Quarto(int numero) {
         this.numero = numero;
-        this.cliente = cliente;
-        this.disponivel = true;
-        this.estaLimpo = estaLimpo;
+        this.estaLimpo = true;
     }
 
     // Getters
@@ -25,59 +22,86 @@ public class Quarto {
         return numero;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    // Métodos
-    public void reservar() {
-        this.disponivel = false;
-    }
-
-    public void liberar() {
-        this.disponivel = true;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public String getNomeCliente() {
-        //return cliente != null ? cliente.getNome() : "Nenhum cliente";
-        if(cliente != null){
-            return cliente.getNome();
-        }else{
-            String mensagem = "Nenhum cliente";
-            return mensagem;
-        }
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-        this.tempoEntrada = LocalDateTime.now();
-        this.disponivel = false;
-        verificarLimpeza();
-    }
-
-    public boolean isEstaLimpo() {
+    public boolean getEstaLimpo() {
         return estaLimpo;
     }
-    
+
+    // Setters    
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
     public void setEstaLimpo(boolean estaLimpo) {
         this.estaLimpo = estaLimpo;
     }
 
-    private void verificarLimpeza() {
-        Runnable tarefaLimpeza = () -> {
-            long tempoDecorrido = ChronoUnit.SECONDS.between(tempoEntrada, LocalDateTime.now());
-            if (tempoDecorrido > 20) {
-                setEstaLimpo(false);
-                System.out.println("O quarto " + numero + " está sujo.");
-            }
-        };
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.schedule(tarefaLimpeza, 20, TimeUnit.SECONDS);
-        scheduler.shutdown();
+    // Getters staticos
+    public static ArrayList<Quarto> getQuartos() {
+        return quartos;
     }
 
+    // Gerador de quartos
+    public static void gerarQuartos() {       
+        for (int i = 0; i <= 10; i++) {
+            quartos.add(new Quarto(i + 1));
+        }
+    }
+
+    // Verifica disponibilidade de um quarto
+
+    // quarto.verificarDisponibilidade(101)
+    // public static boolean verificarDisponibilidade(Quarto quarto) { 
+    //     
+    //     for (Reserva reserva : Reserva.getReservas()) { // reservas todas 
+
+    //         Reserva reservaMaisRecente = null;
+
+    //         if (reserva.getQuarto().equals(quarto)) { // quarto 101 = 101
+    //             if(reservaMaisRecente == null || reserva.getCheckIn().isAfter(reservaMaisRecente.getCheckIn())){
+    //                 reservaMaisRecente = reserva;
+    //             }
+    //         }
+
+    //         if(reservaMaisRecente != null && reservaMaisrecente.getCheckOut()){
+    //             return false;
+    //         }
+                
+    //         //     if(reserva.getCheckOut() == null && reserva.getCheckIn() == null){ // 101 existe um checkout ? sim=true : nao=false
+    //         //         return true; // nem entrada e nem saida
+    //         //     } else if (reserva.getCheckOut() == null){
+    //         //         //
+    //         //     } else {
+    //         //         return false;
+    //         //     }
+    //         // } else{
+    //         //     return true;// aguarde
+    //         // }
+    //     }
+    //     return false;
+    // }
+    
+    public static boolean verificarDisponibilidade(Quarto quarto) { 
+
+        // Verificar a disponibilidade dentro do Array de reservas
+        // Verificar a mais recente
+        // Verificar se a mais recente tem checkout em aberto
+        // Se sim, o quarto está disponível
+        // Se não, o quarto não está disponível
+        
+        Reserva reservaMaisRecente = null;
+    
+        for (Reserva reserva : Reserva.getReservas()) { 
+            if (reserva.getQuarto().equals(quarto)) { 
+                if (reservaMaisRecente == null || reserva.getCheckIn().isAfter(reservaMaisRecente.getCheckIn())) {
+                    reservaMaisRecente = reserva; 
+                }
+            }
+        }
+    
+        if (reservaMaisRecente != null && reservaMaisRecente.getCheckOut() == null) {
+            return false; 
+        }
+    
+        return true; 
+    }
 }

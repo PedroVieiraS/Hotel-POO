@@ -29,7 +29,7 @@ public class MenuFuncionario {
         System.out.println("3. Sair");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha
+        scanner.nextLine();  
 
         switch (opcao) {
             case 1:

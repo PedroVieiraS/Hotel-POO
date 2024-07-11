@@ -6,7 +6,6 @@ import java.util.List;
 public class Login {
     public static final List<Usuario> usuarios = new ArrayList<>();
 
-    // Inicializar com alguns usuários padrão
     static {
         usuarios.add(new Usuario("visitante", "123", "visitante"));
         usuarios.add(new Usuario("funcionario", "456", "funcionario"));
