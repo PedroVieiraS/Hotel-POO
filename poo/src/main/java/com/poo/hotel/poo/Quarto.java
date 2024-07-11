@@ -43,7 +43,13 @@ public class Quarto {
     }
 
     public String getNomeCliente() {
-        return cliente != null ? cliente.getNome() : "Nenhum cliente";
+        //return cliente != null ? cliente.getNome() : "Nenhum cliente";
+        if(cliente != null){
+            return cliente.getNome();
+        }else{
+            String mensagem = "Nenhum cliente";
+            return mensagem;
+        }
     }
 
     public void setCliente(Cliente cliente) {

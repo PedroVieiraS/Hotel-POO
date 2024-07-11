@@ -66,17 +66,27 @@ public class MenuVisitante {
 
         Cliente cliente = new Cliente(nome, cpf);
 
+        System.out.println(cliente.getNome());
+
         Quarto quarto = selecionarQuartoDisponivel();
+
         if (quarto == null) {
             System.out.println("Desculpe, não há quartos disponíveis no momento.");
             return;
         }
 
         quarto.reservar();
+
         Reserva reserva = new Reserva(cliente, quarto);
+        
+        System.out.println("Debug");
+        System.out.println(quarto.isDisponivel());
+        System.out.println(quarto.getNumero());
+
         BancoDeDados.adicionarReserva(reserva);
         System.out.println("Reserva realizada com sucesso para o cliente " + cliente.getNome() +
                 " no quarto " + quarto.getNumero() + ".");
+        
     }
 
     private boolean validarCPF(String cpf) {
