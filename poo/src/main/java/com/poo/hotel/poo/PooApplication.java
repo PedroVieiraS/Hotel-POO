@@ -20,7 +20,8 @@ public class PooApplication {
                 System.out.println("2. Avaliar atendimento");
                 System.out.println("3. Avaliar hospedagem");
                 System.out.println("4. Acessar conta de cliente");
-                System.out.println("5. Sair");
+                System.out.println("5. Área Administrativa");
+                System.out.println("6. Sair");
                 System.out.print("Escolha uma opção: ");
             } else {
                 System.out.println("\n=== Menu do Cliente ===");
@@ -48,6 +49,9 @@ public class PooApplication {
                         loginCliente();
                         break;
                     case 5:
+                        loginAdmin();
+                        break;
+                    case 6:
                         sair = true;
                         System.out.println("Saindo do sistema...");
                         break;
@@ -273,4 +277,105 @@ public class PooApplication {
         }
         return null;
     }
+
+
+    private static void loginAdmin() {
+        System.out.print("\nLogin de Administrador\n");
+        System.out.print("Login: ");
+        String login = scanner.nextLine();
+        System.out.print("Senha: ");
+        String senha = scanner.nextLine();
+
+        if (bancoDeDados.verificarCredenciais(login, senha)) {
+            exibirMenuAdmin();
+        } else {
+            System.out.println("Credenciais inválidas. Acesso negado.");
+        }
+    }
+
+    private static void exibirMenuAdmin() {
+        boolean sair = false;
+        while (!sair) {
+            System.out.println("\n=== Menu Administrativo ===");
+            System.out.println("1. Lançar serviço de quarto");
+            System.out.println("2. Verificar serviços de quarto lançados");
+            System.out.println("3. Voltar ao menu principal");
+            System.out.print("Escolha uma opção: ");
+
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer do scanner
+
+            switch (opcao) {
+                case 1:
+                    lancarServicoQuarto();
+                    break;
+                case 2:
+                    verificarServicosQuarto();
+                    break;
+                case 3:
+                    sair = true;
+                    System.out.println("Retornando ao menu principal...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    private static void lancarServicoQuarto() {
+        System.out.println("\nLançar Serviço de Quarto");
+
+        // Listar reservas para escolher
+        List<Reserva> reservas = bancoDeDados.getReservas();
+        if (reservas.isEmpty()) {
+            System.out.println("Não há reservas para lançar serviços.");
+            return;
+        }
+
+        System.out.println("Reservas disponíveis:");
+        for (int i = 0; i < reservas.size(); i++) {
+            Reserva reserva = reservas.get(i);
+            System.out.println((i + 1) + ". " + reserva.getCliente().getNome() + " - Quarto: " + reserva.getQuarto().getNumero());
+        }
+
+        System.out.print("Escolha o número da reserva: ");
+        int escolha = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do scanner
+
+        if (escolha < 1 || escolha > reservas.size()) {
+            System.out.println("Opção inválida.");
+            return;
+        }
+
+        Reserva reservaEscolhida = reservas.get(escolha - 1);
+
+        // Solicitar informações do serviço de quarto
+        System.out.print("Descrição do serviço: ");
+        String descricao = scanner.nextLine();
+        System.out.print("Valor do serviço: ");
+        double valor = scanner.nextDouble();
+        scanner.nextLine(); // Limpar o buffer do scanner
+
+        // Criar e adicionar o serviço de quarto
+        ServicoQuarto servico = new ServicoQuarto(descricao, valor, reservaEscolhida);
+        bancoDeDados.adicionarServicoQuarto(servico);
+
+        System.out.println("Serviço de quarto lançado com sucesso para a reserva de " + reservaEscolhida.getCliente().getNome());
+    }
+
+    private static void verificarServicosQuarto() {
+        List<ServicoQuarto> servicos = bancoDeDados.getServicosQuarto();
+        if (servicos.isEmpty()) {
+            System.out.println("Não há serviços de quarto lançados.");
+        } else {
+            System.out.println("\n=== Serviços de Quarto Lançados ===");
+            for (ServicoQuarto servico : servicos) {
+                System.out.println("Cliente: " + servico.getReserva().getCliente().getNome());
+                System.out.println("Descrição: " + servico.getDescricao());
+                System.out.println("Valor: R$" + servico.getValor());
+                System.out.println("-------------------------");
+            }
+        }
+    }
+
 }
