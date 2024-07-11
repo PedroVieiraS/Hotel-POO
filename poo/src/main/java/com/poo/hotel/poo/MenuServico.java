@@ -3,20 +3,26 @@ package com.poo.hotel.poo;
 import java.util.Scanner;
 
 public class MenuServico {
+    
+    private Scanner scanner;
+    
+    public MenuServico() {
+        this.scanner = new Scanner(System.in);
+    }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public boolean exibirMenu() {
         while (true) {
             exibirMenuServicos();
             String opcao = scanner.nextLine();
             if (opcao.equals("0")) {
                 System.out.println("Saindo do sistema...");
-                break;
+                return true; // Indica que o usuário escolheu sair
             } else {
-                lancarServico(opcao, scanner);
+                if (lancarServico(opcao, scanner)) {
+                    return true; // Indica que o usuário confirmou o serviço
+                }
             }
         }
-        scanner.close();
     }
 
     public static void exibirMenuServicos() {
@@ -29,7 +35,7 @@ public class MenuServico {
         System.out.print("Selecione uma opção: ");
     }
 
-    public static void lancarServico(String opcao, Scanner scanner) {
+    public boolean lancarServico(String opcao, Scanner scanner) {
         String descricao;
         switch (opcao) {
             case "1":
@@ -46,7 +52,7 @@ public class MenuServico {
                 break;
             default:
                 System.out.println("Opção inválida");
-                return;
+                return false; // Retorna falso se a opção for inválida
         }
 
         ServicoQuarto servico = new ServicoQuarto(descricao);
@@ -55,9 +61,12 @@ public class MenuServico {
         String confirmacao = scanner.nextLine();
         if (confirmacao.equalsIgnoreCase("s")) {
             servico.realizar();
+            BancoDeDados.adicionarServicoQuarto(servico);
             System.out.println("Serviço lançado com sucesso!");
+            return true; // Retorna verdadeiro se o serviço foi confirmado
         } else {
             System.out.println("Lançamento cancelado.");
+            return false; // Retorna falso se o serviço não foi confirmado
         }
     }
 

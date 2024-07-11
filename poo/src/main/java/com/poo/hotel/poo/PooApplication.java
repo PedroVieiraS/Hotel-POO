@@ -37,7 +37,8 @@ public class PooApplication {
         System.out.println("2. Menu Funcionário");
         System.out.println("3. Menu Gestor");
         System.out.println("4. Cadastro de Usuário");
-        System.out.println("5. Sair");
+        System.out.println("5. Menu Serviço");
+        System.out.println("6. Sair");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine(); 
@@ -59,6 +60,10 @@ public class PooApplication {
                 cadastrarUsuario();
                 break;
             case 5:
+                MenuServico menuServico = new MenuServico();
+                menuServico.exibirMenu();
+                break;
+            case 6:
                 System.out.println("Saindo do sistema...");
                 System.exit(0);
                 break;
