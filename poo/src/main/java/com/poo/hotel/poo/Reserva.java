@@ -12,7 +12,6 @@ public class Reserva {
     private LocalDate checkIn;
     private LocalDate checkOut;
 
-    // Construtores
     public Reserva(Cliente cliente, Quarto quarto, LocalDate checkIn) {
         this.cliente = cliente;
         this.quarto = quarto;
@@ -26,7 +25,6 @@ public class Reserva {
         this.checkOut = checkOut;
     }
 
-    // Getters
     public Cliente getCliente() {
         return cliente;
     }
@@ -47,7 +45,6 @@ public class Reserva {
         return reservas;
     }
 
-    // Setters
     public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
@@ -99,14 +96,24 @@ public class Reserva {
         return null;
     }
 
-    // Gerar reservas utilizando clientes e quartos já cadastrados nos Arrays
     public static void gerarReservas() {
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(0), Quarto.getQuartos().get(0), LocalDate.of(2024, 7, 1)));
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(1), Quarto.getQuartos().get(1), LocalDate.of(2024, 7, 2)));
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(2), Quarto.getQuartos().get(2), LocalDate.of(2024, 7, 3)));
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(3), Quarto.getQuartos().get(3), LocalDate.of(2024, 7, 4)));
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(4), Quarto.getQuartos().get(4), LocalDate.of(2024, 7, 5)));
-        
     }
-
+    
+    public static void listarReservas() {
+        if (reservas.isEmpty()) {
+            System.out.println("Não há reservas realizadas.");
+        } else {
+            for (Reserva reserva : reservas) {
+                System.out.println("Cliente: " + reserva.getCliente().getNome() + 
+                                   ", Quarto: " + reserva.getQuarto().getNumero() + 
+                                   ", Check-in: " + reserva.getCheckIn() + 
+                                   ", Check-out: " + (reserva.getCheckOut() != null ? reserva.getCheckOut() : "Ainda hospedado"));
+            }
+        }
+    }
 }

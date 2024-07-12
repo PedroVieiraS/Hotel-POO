@@ -1,4 +1,5 @@
 package com.poo.hotel.poo;
+
 import java.util.Scanner;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,44 +7,37 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PooApplication {
     public static Scanner scanner = new Scanner(System.in);
-    
+
     public static void main(String[] args) {
-        
-        
-        // Alimenta o ArrayList de quartos
         Quarto.gerarQuartos();
-        // Alimenta o ArrayList de clientes
         Cliente.gerarClientes();
-        // Alimenta o banco de dados de reservas
         Reserva.gerarReservas();
-        
+
         while (true) {
-            
             exibirMenuInicial();
         }
     }
-    
+
     public class LimpaTerminal {
         static void limpa_windows() {
             try {
                 if (System.getProperty("os.name").contains("Windows")) {
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-				} else {
+                } else {
                     System.out.println("Este comando só funciona no Windows.");
-				}
-			} catch (Exception e) {
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
-			}
-            
-		}
-	}
-    
+            }
+        }
+    }
+
     private static void exibirMenuInicial() {
-        System.out.println("##############################");
-        System.out.println("#                            #");
-        System.out.println("# BEM VINDO AO HOTEL HABBO   #");
-        System.out.println("#                            #");
-        System.out.println("##############################");
+        System.out.println("###########################################");
+        System.out.println("###                                     ###");
+        System.out.println("###         BEM VINDO AO HOTEL SENAI    ###");
+        System.out.println("###                                     ###");
+        System.out.println("###########################################");
         System.out.println();
         System.out.println("### MENU INICIAL ###");
         System.out.println("1. Menu Visitante");
@@ -54,7 +48,7 @@ public class PooApplication {
         System.out.println();
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         switch (opcao) {
             case 1:
@@ -76,11 +70,6 @@ public class PooApplication {
                 System.out.println("Saindo do sistema...");
                 System.exit(0);
                 break;
-            case 6:
-                for (Quarto quarto : BancoDeDados.getQuartos()) {
-                    System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
-                }
-                break;
             default:
                 System.out.println("Opção inválida!");
                 break;
@@ -101,6 +90,4 @@ public class PooApplication {
             System.out.println("Falha no cadastro do usuário.");
         }
     }
-
-
 }

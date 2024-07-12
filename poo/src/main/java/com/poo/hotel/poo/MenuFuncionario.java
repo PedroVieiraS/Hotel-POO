@@ -1,4 +1,5 @@
 package com.poo.hotel.poo;
+
 import java.util.Scanner;
 
 public class MenuFuncionario {
@@ -25,7 +26,7 @@ public class MenuFuncionario {
     private void exibirOpcoesFuncionario() {
         System.out.println("### MENU FUNCIONÁRIO ###");
         System.out.println("1. Lançar serviço de quarto");
-        System.out.println("2. Alocar Visitante em Quarto");
+        System.out.println("2. Ver reservas realizadas");
         System.out.println("3. Sair");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
@@ -36,6 +37,9 @@ public class MenuFuncionario {
                 lancarServicoQuarto();
                 break;
             case 2:
+                Reserva.listarReservas();
+                break;
+            case 3:
                 System.out.println("Saindo do menu funcionário...");
                 break;
             default:
@@ -43,8 +47,6 @@ public class MenuFuncionario {
                 break;
         }
     }
-
-
 
     private void lancarServicoQuarto() {
         System.out.println("### LANÇAR SERVIÇO DE QUARTO ###");

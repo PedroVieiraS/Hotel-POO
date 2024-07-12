@@ -1,26 +1,13 @@
 package com.poo.hotel.poo;
 
-<<<<<<< HEAD
-=======
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
->>>>>>> b9b8c500369d3cf095b6c77d342801ec846e532a
 import java.util.Scanner;
 
 public class MenuVisitante {
     
     private Scanner scanner;
-    private ArrayList <AvaliacaoQualidade> avaliacoes;
-
-	private boolean disponivel;
-
-
-    //  MÉTODOS
-
-    public boolean isDisponivel() {
-		return disponivel;
-	}
-
+    private ArrayList<AvaliacaoQualidade> avaliacoes;
 
     public MenuVisitante() {
         this.scanner = new Scanner(System.in);
@@ -28,17 +15,7 @@ public class MenuVisitante {
     }
 
     public void exibirMenu() {
-        System.out.print("Login: ");
-        String login = scanner.nextLine();
-        System.out.print("Senha: ");
-        String senha = scanner.nextLine();
-
-        if (Login.autenticar(login, senha, "visitante")) {
-            System.out.println("Login realizado com sucesso!");
-            exibirOpcoesVisitante();
-        } else {
-            System.out.println("Credenciais inválidas. Acesso negado.");
-        }
+        exibirOpcoesVisitante();
     }
 
     private void exibirOpcoesVisitante() {
@@ -76,52 +53,53 @@ public class MenuVisitante {
 
     private Quarto selecionarQuartoDisponivel() {
         for (Quarto quarto : BancoDeDados.getQuartos()) {
-            if (isDisponivel()) {
+            if (Quarto.verificarDisponibilidade(quarto)) {
                 return quarto;
             }
         }
         return null;
     }
 
+    private void realizarReserva() {
+        System.out.println("### REALIZAR RESERVA ###");
+        System.out.print("Digite seu nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite seu CPF: ");
+        String cpf = scanner.nextLine();
+
+        if (validarCPF(cpf)) {
+            Cliente cliente = Cliente.getClienteByCpf(cpf);
+            if (cliente == null) {
+                cliente = new Cliente(nome, cpf);
+                Cliente.adicionarCliente(cliente);
+            }
+
+            Quarto quarto = selecionarQuartoDisponivel();
+
+            if (quarto != null) {
+                Reserva reserva = new Reserva(cliente, quarto, LocalDate.now());
+                Reserva.adicionarReserva(reserva);
+                System.out.println("Reserva realizada com sucesso!");
+            } else {
+                System.out.println("Não há quartos disponíveis.");
+            }
+        } else {
+            System.out.println("CPF inválido.");
+        }
+    }
+
     private void avaliarAtendimento() {
         System.out.println("### AVALIAR ATENDIMENTO ###");
-        System.out.print("Digite sua avaliação (1 a 5): ");
-        int avaliacao = scanner.nextInt();
-        scanner.nextLine(); 
-
-<<<<<<< HEAD
-        System.out.print("Deixe seu comentário: ");
-        String comentario = scanner.nextLine();
-
-        Avaliacao atendimento = new Avaliacao(avaliacao, comentario);
-        BancoDeDados.adicionarAvaliacaoAtendimento(atendimento);
-        System.out.println("Obrigado pela sua avaliação!");
-=======
         System.out.print("Avalie o atendimento de 1 a 10: ");
         int atendimento = scanner.nextInt();
         scanner.nextLine();
-
         AvaliacaoQualidade avaliacao = new AvaliacaoQualidade(0, 0, 0, 0, 0, atendimento);
         avaliacoes.add(avaliacao);
-
         System.out.println("Avaliação de atendimento registrada com sucesso!");
->>>>>>> b9b8c500369d3cf095b6c77d342801ec846e532a
     }
 
     private void avaliarQualidadeHospedagem() {
         System.out.println("### AVALIAR QUALIDADE DA HOSPEDAGEM ###");
-        System.out.print("Digite sua avaliação (1 a 5): ");
-        int avaliacao = scanner.nextInt();
-        scanner.nextLine(); 
-
-<<<<<<< HEAD
-        System.out.print("Deixe seu comentário: ");
-        String comentario = scanner.nextLine();
-
-        Avaliacao qualidadeHospedagem = new Avaliacao(avaliacao, comentario);
-        BancoDeDados.adicionarAvaliacaoQualidadeHospedagem(qualidadeHospedagem);
-        System.out.println("Obrigado pela sua avaliação!");
-=======
         System.out.print("Avalie o quarto de 1 a 10: ");
         int quarto = scanner.nextInt();
         scanner.nextLine();
@@ -137,12 +115,8 @@ public class MenuVisitante {
         System.out.print("Avalie o café da manhã de 1 a 10: ");
         int cafe = scanner.nextInt();
         scanner.nextLine();
-
         AvaliacaoQualidade avaliacao = new AvaliacaoQualidade(quarto, banheiro, limpeza, localidade, cafe, 0);
         avaliacoes.add(avaliacao);
-
         System.out.println("Avaliações de qualidade da hospedagem registradas com sucesso!");
->>>>>>> b9b8c500369d3cf095b6c77d342801ec846e532a
     }
-    
 }

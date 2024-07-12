@@ -8,13 +8,11 @@ public class Cliente {
     private String nome;
     private String cpf;
 
-    // Construtor
     public Cliente(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
     }
 
-    // Getters
     public String getNome() {
         return nome;
     }
@@ -23,7 +21,6 @@ public class Cliente {
         return cpf;
     }
 
-    // Setters
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -32,23 +29,18 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    // Metodos estáticos
-    // Adiciona um cliente
     public static void adicionarCliente(Cliente cliente) {
         clientes.add(cliente);
     }
     
-    // Remove um cliente
     public static void removerCliente(Cliente cliente) {
         clientes.remove(cliente);
     }
 
-    // Retorna a lista de clientes
     public static ArrayList<Cliente> getClientes() {
         return clientes;
     }
 
-    // Retorna um cliente pelo CPF
     public static Cliente getClienteByCpf(String cpf) {
         for (Cliente cliente : clientes) {
             if (cliente.getCpf().equals(cpf)) {
@@ -58,7 +50,6 @@ public class Cliente {
         return null;
     }
 
-    // Retorna um cliente pelo nome
     public static Cliente getClienteByNome(String nome) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome().equals(nome)) {
@@ -68,27 +59,14 @@ public class Cliente {
         return null;
     }
 
-    // Retorna um cliente pelo nome e CPF
-    public static Cliente getClienteByNomeECpf(String nome, String cpf) {
-        for (Cliente cliente : clientes) {
-            if (cliente.getNome().equals(nome) && cliente.getCpf().equals(cpf)) {
-                return cliente;
-            }
-        }
-        return null;
-    }
-
-    // Retorna a quantidade de clientes
     public static int getQuantidadeClientes() {
         return clientes.size();
     }
 
-    // Retorna se um cliente existe
     public static boolean clienteExiste(Cliente cliente) {
         return clientes.contains(cliente);
     }   
 
-    // Retorna se um cliente existe pelo CPF
     public static boolean clienteExisteByCpf(String cpf) {
         for (Cliente cliente : clientes) {
             if (cliente.getCpf().equals(cpf)) {
@@ -98,7 +76,6 @@ public class Cliente {
         return false;
     }
 
-    // Retorna se um cliente existe pelo nome
     public static boolean clienteExisteByNome(String nome) {
         for (Cliente cliente : clientes) {
             if (cliente.getNome().equals(nome)) {
@@ -108,7 +85,6 @@ public class Cliente {
         return false;
     }
 
-    // Alimenta o ArrayList de clientes
     public static void gerarClientes() {
         Cliente.adicionarCliente(new Cliente("João", "123.456.789-00"));
         Cliente.adicionarCliente(new Cliente("Maria", "987.654.321-00"));

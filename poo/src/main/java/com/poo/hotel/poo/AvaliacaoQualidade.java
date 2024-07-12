@@ -65,6 +65,4 @@ public class AvaliacaoQualidade {
     public void setAtendimento(int atendimento) {
         this.atendimento = atendimento;
     }
-
-
 }
