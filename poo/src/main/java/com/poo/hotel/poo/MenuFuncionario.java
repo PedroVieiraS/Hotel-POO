@@ -27,10 +27,11 @@ public class MenuFuncionario {
         System.out.println("### MENU FUNCIONÁRIO ###");
         System.out.println("1. Lançar serviço de quarto");
         System.out.println("2. Ver reservas realizadas");
-        System.out.println("3. Sair");
+        System.out.println("3. Tipo de serviço de quarto");
+        System.out.println("4. Sair");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
-        scanner.nextLine();  
+        scanner.nextLine();
 
         switch (opcao) {
             case 1:
@@ -40,6 +41,11 @@ public class MenuFuncionario {
                 Reserva.listarReservas();
                 break;
             case 3:
+                MenuServico menuServico = new MenuServico();
+                menuServico.exibirMenu();
+                break;
+
+            case 4:
                 System.out.println("Saindo do menu funcionário...");
                 break;
             default:

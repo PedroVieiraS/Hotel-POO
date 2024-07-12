@@ -3,66 +3,55 @@ package com.poo.hotel.poo;
 import java.util.Scanner;
 
 public class MenuServico {
+    private Scanner scanner;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            exibirMenuServicos();
-            String opcao = scanner.nextLine();
-            if (opcao.equals("0")) {
-                System.out.println("Saindo do sistema...");
-                break;
-            } else {
-                lancarServico(opcao, scanner);
-            }
-        }
-        scanner.close();
+    public MenuServico() {
+        this.scanner = new Scanner(System.in);
     }
 
-    public static void exibirMenuServicos() {
-        System.out.println("Menu Serviço");
+    public void exibirMenu() {
+        System.out.println("### MENU SERVIÇO ###");
         System.out.println("1. Café da manhã");
         System.out.println("2. Limpeza");
         System.out.println("3. Lavanderia");
         System.out.println("4. Manutenção");
-        System.out.println("0. Sair");
+        System.out.println("5. Sair");
         System.out.print("Selecione uma opção: ");
-    }
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
 
-    public static void lancarServico(String opcao, Scanner scanner) {
-        String descricao;
         switch (opcao) {
-            case "1":
-                descricao = "Café da manhã";
+            case 1:
+                lancarServico("Café da manhã");
                 break;
-            case "2":
-                descricao = "Limpeza";
+            case 2:
+                lancarServico("Limpeza");
                 break;
-            case "3":
-                descricao = "Lavanderia";
+            case 3:
+                lancarServico("Lavanderia");
                 break;
-            case "4":
-                descricao = "Manutenção";
+            case 4:
+                lancarServico("Manutenção");
+                break;
+            case 5:
+                System.out.println("Saindo do menu serviço...");
                 break;
             default:
-                System.out.println("Opção inválida");
-                return;
+                System.out.println("Opção inválida!");
+                break;
         }
+    }
 
+    private void lancarServico(String descricao) {
         ServicoQuarto servico = new ServicoQuarto(descricao);
         System.out.println("Você selecionou: " + servico.getDescricao());
         System.out.print("Confirmar lançamento do serviço? (s/n): ");
         String confirmacao = scanner.nextLine();
         if (confirmacao.equalsIgnoreCase("s")) {
-            servico.realizar();
+            BancoDeDados.adicionarServicoQuarto(servico);
             System.out.println("Serviço lançado com sucesso!");
         } else {
             System.out.println("Lançamento cancelado.");
         }
-    }
-
-    @Override
-    public String toString() {
-        return "MenuServico []";
     }
 }

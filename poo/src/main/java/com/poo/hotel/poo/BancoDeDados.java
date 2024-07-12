@@ -14,11 +14,11 @@ public class BancoDeDados {
         servicosQuarto.add(servicoQuarto);
     }
 
-    public static List<Quarto> getQuartos() {
+    public static ArrayList<Quarto> getQuartos() {
         return quartos;
     }
 
-    public static List<ServicoQuarto> getServicosQuarto() {
+    public static ArrayList<ServicoQuarto> getServicosQuarto() {
         return servicosQuarto;
     }
 }
