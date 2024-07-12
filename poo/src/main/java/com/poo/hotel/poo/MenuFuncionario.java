@@ -2,6 +2,9 @@ package com.poo.hotel.poo;
 
 import java.util.*;
 
+
+
+
 public class MenuFuncionario {
     private Scanner scanner;
 
@@ -14,6 +17,8 @@ public class MenuFuncionario {
         String login = scanner.nextLine();
         System.out.print("Senha: ");
         String senha = scanner.nextLine();
+
+        
 
         if (Autenticacao.autenticar(login, senha, "funcionario")) {
             System.out.println("Login realizado com sucesso!");
@@ -32,11 +37,11 @@ public class MenuFuncionario {
             System.out.println("4. Fechar gastos do quarto");
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
-        
+
             try {
                 int opcao = scanner.nextInt();
-                scanner.nextLine();  // Consumir a quebra de linha
-            
+                scanner.nextLine(); // Consumir a quebra de linha
+
                 switch (opcao) {
                     case 1:
                         lancarServicosEssenciais();
@@ -59,7 +64,7 @@ public class MenuFuncionario {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida! Por favor, digite um número.");
-                scanner.nextLine();  // Limpar a entrada inválida
+                scanner.nextLine(); // Limpar a entrada inválida
             }
         }
     }
@@ -71,10 +76,10 @@ public class MenuFuncionario {
         System.out.println("2. Limpeza");
         System.out.println("3. Manutenção");
         System.out.print("Escolha o tipo de serviço: ");
-        
+
         String tipoServico = null;
         int opcao = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha
+        scanner.nextLine(); // Consumir a quebra de linha
 
         switch (opcao) {
             case 1:
@@ -93,7 +98,7 @@ public class MenuFuncionario {
 
         System.out.print("Digite o número do quarto: ");
         int numeroQuarto = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha
+        scanner.nextLine(); // Consumir a quebra de linha
 
         ServicoQuarto servicoQuarto = new ServicoQuarto(tipoServico, 0, numeroQuarto); // Valor padrão 0
         BancoDeDados.adicionarServicoQuarto(servicoQuarto);
@@ -110,11 +115,11 @@ public class MenuFuncionario {
 
         System.out.print("Digite o valor do serviço: ");
         double valor = scanner.nextDouble();
-        scanner.nextLine();  // Consumir a quebra de linha
-        
+        scanner.nextLine(); // Consumir a quebra de linha
+
         System.out.print("Digite o número do quarto: ");
         int numeroQuarto = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha
+        scanner.nextLine(); // Consumir a quebra de linha
 
         ServicoQuarto servicoQuarto = new ServicoQuarto(tipoServico, valor, numeroQuarto);
         BancoDeDados.adicionarServicoQuarto(servicoQuarto);
@@ -127,7 +132,7 @@ public class MenuFuncionario {
     private void consultarServicosGastosQuarto() {
         System.out.print("Digite o número do quarto: ");
         int numeroQuarto = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha
+        scanner.nextLine(); // Consumir a quebra de linha
 
         List<ServicoQuarto> servicos = BancoDeDados.obterServicosPorQuarto(numeroQuarto);
         double totalGastos = 0;
@@ -145,7 +150,7 @@ public class MenuFuncionario {
     private void fecharGastosQuarto() {
         System.out.print("Digite o número do quarto: ");
         int numeroQuarto = scanner.nextInt();
-        scanner.nextLine();  // Consumir a quebra de linha
+        scanner.nextLine(); // Consumir a quebra de linha
 
         double totalGastos = BancoDeDados.obterTotalGastosPorQuarto(numeroQuarto);
 
