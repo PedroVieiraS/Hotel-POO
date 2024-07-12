@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BancoDeDados {
-    public static ArrayList<Quarto> quartos = new ArrayList<>();
-    public static ArrayList<ServicoQuarto> servicosQuarto = new ArrayList<>();
+    public static List<Quarto> quartos = new ArrayList<>();
+    public static List<ServicoQuarto> servicosQuarto = new ArrayList<>();
 
     public static void adicionarQuarto(Quarto quarto) {
         quartos.add(quarto);
@@ -14,11 +14,11 @@ public class BancoDeDados {
         servicosQuarto.add(servicoQuarto);
     }
 
-    public static ArrayList<Quarto> getQuartos() {
+    public static List<Quarto> getQuartos() {
         return quartos;
     }
 
-    public static ArrayList<ServicoQuarto> getServicosQuarto() {
+    public static List<ServicoQuarto> getServicosQuarto() {
         return servicosQuarto;
     }
 }

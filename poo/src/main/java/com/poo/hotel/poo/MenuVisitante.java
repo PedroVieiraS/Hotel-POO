@@ -15,7 +15,17 @@ public class MenuVisitante {
     }
 
     public void exibirMenu() {
-        exibirOpcoesVisitante();
+        System.out.print("Login: ");
+        String login = scanner.nextLine();
+        System.out.print("Senha: ");
+        String senha = scanner.nextLine();
+
+        if (Login.autenticar(login, senha, "visitante")) {
+            System.out.println("Login realizado com sucesso!");
+            exibirOpcoesVisitante();
+        } else {
+            System.out.println("Credenciais inválidas. Acesso negado.");
+        }
     }
 
     private void exibirOpcoesVisitante() {
@@ -23,7 +33,8 @@ public class MenuVisitante {
         System.out.println("1. Realizar reserva");
         System.out.println("2. Avaliar atendimento");
         System.out.println("3. Avaliar qualidade da hospedagem");
-        System.out.println("4. Sair");
+        System.out.println("4. Ver reservas realizadas");
+        System.out.println("5. Sair");
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -39,6 +50,9 @@ public class MenuVisitante {
                 avaliarQualidadeHospedagem();
                 break;
             case 4:
+                Reserva.listarReservas();
+                break;
+            case 5:
                 System.out.println("Saindo do menu visitante...");
                 break;
             default:

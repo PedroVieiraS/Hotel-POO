@@ -35,7 +35,9 @@ public class Quarto {
 
     public static void gerarQuartos() {       
         for (int i = 0; i < 10; i++) {
-            quartos.add(new Quarto(i + 1));
+            Quarto quarto = new Quarto(i + 1);
+            quartos.add(quarto);
+            BancoDeDados.adicionarQuarto(quarto);  // Adiciona os quartos ao BancoDeDados
         }
     }
 

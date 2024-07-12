@@ -67,6 +67,9 @@ public class PooApplication {
                 cadastrarUsuario();
                 break;
             case 5:
+                Reserva.listarReservas();
+                break;
+            case 6:
                 System.out.println("Saindo do sistema...");
                 System.exit(0);
                 break;
