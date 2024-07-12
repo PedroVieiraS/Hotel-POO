@@ -5,31 +5,39 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PooApplication {
-	
-	public class LimpaTerminal {
-		static void limpa_windows() {
-			try {
-				if (System.getProperty("os.name").contains("Windows")) {
-					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-				} else {
-					System.out.println("Este comando só funciona no Windows.");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
-
-	}
-	
-	private static Scanner scanner = new Scanner(System.in);
-
+    public static Scanner scanner = new Scanner(System.in);
+    
     public static void main(String[] args) {
+        
+        
+        // Alimenta o ArrayList de quartos
+        Quarto.gerarQuartos();
+        // Alimenta o ArrayList de clientes
+        Cliente.gerarClientes();
+        // Alimenta o banco de dados de reservas
+        Reserva.gerarReservas();
+        
         while (true) {
+            
             exibirMenuInicial();
         }
     }
-
+    
+    public class LimpaTerminal {
+        static void limpa_windows() {
+            try {
+                if (System.getProperty("os.name").contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+				} else {
+                    System.out.println("Este comando só funciona no Windows.");
+				}
+			} catch (Exception e) {
+                e.printStackTrace();
+			}
+            
+		}
+	}
+    
     private static void exibirMenuInicial() {
         System.out.println("##############################");
         System.out.println("#                            #");
@@ -43,6 +51,7 @@ public class PooApplication {
         System.out.println("3. Menu Gestor");
         System.out.println("4. Cadastro de Usuário");
         System.out.println("5. Sair");
+        System.out.println();
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine(); 
@@ -66,6 +75,11 @@ public class PooApplication {
             case 5:
                 System.out.println("Saindo do sistema...");
                 System.exit(0);
+                break;
+            case 6:
+                for (Quarto quarto : BancoDeDados.getQuartos()) {
+                    System.out.println("Quarto número: " + quarto.getNumero() + ", Disponível: " + quarto.isDisponivel() + ", Limpo: " + quarto.isEstaLimpo());
+                }
                 break;
             default:
                 System.out.println("Opção inválida!");

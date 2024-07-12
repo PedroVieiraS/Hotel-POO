@@ -1,6 +1,6 @@
 package com.poo.hotel.poo;
 
-public class ServicoQuarto {
+class ServicoQuarto {
     private String descricao;
 
     public ServicoQuarto(String descricao) {
@@ -11,3 +11,4 @@ public class ServicoQuarto {
         return descricao;
     }
 }
+
