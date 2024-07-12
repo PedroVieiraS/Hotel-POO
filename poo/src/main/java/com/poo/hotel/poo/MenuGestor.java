@@ -65,9 +65,9 @@ public class MenuGestor {
     }
 
     private void verificarFaturamento() {
-        System.out.println("### VERIFICAR FATURAMENTO DO HOTEL ###");
+        System.out.println("###  FATURAMENTO DO HOTEL ###");
 
-        double precoPorDia = 100.0; // Exemplo de preço fixo por dia
+        double precoPorDia = 350.0; 
         double faturamentoTotal = 0.0;
 
         for (Reserva reserva : Reserva.getReservas()) {
@@ -80,7 +80,7 @@ public class MenuGestor {
     }
 
     private void verificarVacancia() {
-        System.out.println("### VERIFICAR NÍVEL DE VACÂNCIA ###");
+        System.out.println("### NÍVEL DE VACÂNCIA ###");
 
         int totalQuartos = BancoDeDados.getQuartos().size();
         int quartosOcupados = 0;
@@ -101,7 +101,7 @@ public class MenuGestor {
     }
 
     private void verificarDiasMenorVacancia() {
-        System.out.println("### VERIFICAR DIAS DA SEMANA DE MENOR VACÂNCIA ###");
+        System.out.println("###  SEMANA DE MENOR VACÂNCIA ###");
 
         Map<DayOfWeek, Integer> ocupacaoPorDia = new HashMap<>();
 
@@ -134,7 +134,7 @@ public class MenuGestor {
     }
 
     private void verificarIndicadoresDesempenho() {
-        System.out.println("### VERIFICAR INDICADORES DE DESEMPENHO ###");
+        System.out.println("### INDICADORES DE DESEMPENHO ###");
 
         verificarFaturamento();
         verificarVacancia();

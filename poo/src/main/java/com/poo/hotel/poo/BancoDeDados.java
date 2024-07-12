@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BancoDeDados {
-    public static List<Quarto> quartos = new ArrayList<>();
-    public static List<ServicoQuarto> servicosQuarto = new ArrayList<>();
+    public static ArrayList<Quarto> quartos = new ArrayList<>();
+    public static ArrayList<ServicoQuarto> servicosQuarto = new ArrayList<>();
 
     public static void adicionarQuarto(Quarto quarto) {
         quartos.add(quarto);

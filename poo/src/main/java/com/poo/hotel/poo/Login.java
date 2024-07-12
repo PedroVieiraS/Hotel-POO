@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Login {
-    public static final List<Usuario> usuarios = new ArrayList<>();
+    public static final ArrayList<Usuario> usuarios = new ArrayList<>();
 
     static {
         usuarios.add(new Usuario("visitante", "123", "visitante"));

@@ -35,7 +35,7 @@ public class PooApplication {
     private static void exibirMenuInicial() {
         System.out.println("###########################################");
         System.out.println("###                                     ###");
-        System.out.println("###         BEM VINDO AO HOTEL SENAI    ###");
+        System.out.println("###         BEM VINDO AO HOTEL HABBO    ###");
         System.out.println("###                                     ###");
         System.out.println("###########################################");
         System.out.println();
