@@ -1,26 +1,31 @@
 package com.poo.hotel.poo;
 
 class ServicoQuarto {
-    private String descricao;
-    private boolean realizado;
+    private String tipoServico;
+    private double valor;
+    private int numeroQuarto;
 
-    public ServicoQuarto(String descricao) {
-        this.descricao = descricao;
-        this.realizado = false;
+    public ServicoQuarto(String tipoServico, double valor, int numeroQuarto) {
+        this.tipoServico = tipoServico;
+        this.valor = valor;
+        this.numeroQuarto = numeroQuarto;
     }
 
-    // Getters
-    public String getDescricao() {
-        return descricao;
+    public String getTipoServico() {
+        return tipoServico;
     }
 
-    public boolean isRealizado() {
-        return realizado;
+    public double getValor() {
+        return valor;
     }
 
-    // Método
-    public void realizar() {
-        this.realizado = true;
+    public int getNumeroQuarto() {
+        return numeroQuarto;
+    }
+
+    @Override
+    public String toString() {
+        return "Tipo: " + tipoServico + ", Valor: " + valor + ", Quarto: " + numeroQuarto;
     }
 }
 
