@@ -42,7 +42,7 @@ public class PooApplication {
 
         while(repete){ 
 
-        limpa_windows();
+        limpaWindows();
         System.out.println();
         System.out.println("### MENU INICIAL ###");
         System.out.println("1. Menu Visitante");

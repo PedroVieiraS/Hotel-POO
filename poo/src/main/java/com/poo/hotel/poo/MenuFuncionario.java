@@ -54,15 +54,16 @@ public class MenuFuncionario {
         }
     }
 
-        System.out.println("Encerrando menu funcionário...");
-    }
+    System.out.println("Encerrando menu funcionário...");
+
+    
 
     private boolean lancarServicoQuarto() {
         System.out.println("### LANÇAR SERVIÇO DE QUARTO ###");
         System.out.print("Digite a descrição do serviço: ");
         String descricao = scanner.nextLine();
 
-        ServicoQuarto servicoQuarto = new ServicoQuarto(descricao);
+        ServicoQuarto servicoQuarto = new ServicoQuarto(descricao, 0);
         BancoDeDados.adicionarServicoQuarto(servicoQuarto);
 
         System.out.println("Serviço de quarto lançado com sucesso: " + descricao);
