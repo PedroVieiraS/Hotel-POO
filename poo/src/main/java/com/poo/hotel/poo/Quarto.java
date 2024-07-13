@@ -1,6 +1,6 @@
 package com.poo.hotel.poo;
-
 import java.util.ArrayList;
+
 
 public class Quarto {
     private static ArrayList<Quarto> quartos = new ArrayList<>();
