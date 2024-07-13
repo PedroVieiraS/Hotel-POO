@@ -4,9 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Reserva {
-    
     public static ArrayList<Reserva> reservas = new ArrayList<>();
-    
+
     private Cliente cliente;
     private Quarto quarto;
     private LocalDate checkIn;
@@ -15,13 +14,13 @@ public class Reserva {
     public Reserva(Cliente cliente, Quarto quarto, LocalDate checkIn) {
         this.cliente = cliente;
         this.quarto = quarto;
-        this.checkIn = checkIn;  
+        this.checkIn = checkIn;
     }
 
     public Reserva(Cliente cliente, Quarto quarto, LocalDate checkIn, LocalDate checkOut) {
         this.cliente = cliente;
         this.quarto = quarto;
-        this.checkIn = checkIn;  
+        this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
 
@@ -103,16 +102,16 @@ public class Reserva {
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(3), Quarto.getQuartos().get(3), LocalDate.of(2024, 7, 4)));
         Reserva.adicionarReserva(new Reserva(Cliente.getClientes().get(4), Quarto.getQuartos().get(4), LocalDate.of(2024, 7, 5)));
     }
-    
+
     public static void listarReservas() {
         if (reservas.isEmpty()) {
             System.out.println("Não há reservas realizadas.");
         } else {
             for (Reserva reserva : reservas) {
-                System.out.println("Cliente: " + reserva.getCliente().getNome() + 
-                                   ", Quarto: " + reserva.getQuarto().getNumero() + 
-                                   ", Check-in: " + reserva.getCheckIn() + 
-                                   ", Check-out: " + (reserva.getCheckOut() != null ? reserva.getCheckOut() : "Ainda hospedado"));
+                System.out.println("Cliente: " + reserva.getCliente().getNome() +
+                        ", Quarto: " + reserva.getQuarto().getNumero() +
+                        ", Check-in: " + reserva.getCheckIn() +
+                        ", Check-out: " + (reserva.getCheckOut() != null ? reserva.getCheckOut() : "Ainda hospedado"));
             }
         }
     }

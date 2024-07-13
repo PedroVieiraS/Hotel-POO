@@ -67,7 +67,7 @@ public class MenuGestor {
     private void verificarFaturamento() {
         System.out.println("###  FATURAMENTO DO HOTEL ###");
 
-        double precoPorDia = 350.0; 
+        double precoPorDia = 150.0; 
         double faturamentoTotal = 0.0;
 
         for (Reserva reserva : Reserva.getReservas()) {

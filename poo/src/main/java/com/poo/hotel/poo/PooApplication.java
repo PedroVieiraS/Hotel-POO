@@ -1,7 +1,6 @@
 package com.poo.hotel.poo;
 
 import java.util.Scanner;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -18,8 +17,8 @@ public class PooApplication {
         }
     }
 
-    public class LimpaTerminal {
-        static void limpa_windows() {
+    public static class LimpaTerminal {
+        public static void limpaWindows() {
             try {
                 if (System.getProperty("os.name").contains("Windows")) {
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -44,7 +43,8 @@ public class PooApplication {
         System.out.println("2. Menu Funcionário");
         System.out.println("3. Menu Gestor");
         System.out.println("4. Cadastro de Usuário");
-        System.out.println("5. Sair");
+        System.out.println("5. Listar Reservas");
+        System.out.println("6. Sair");
         System.out.println();
         System.out.print("Escolha uma opção: ");
         int opcao = scanner.nextInt();
@@ -52,17 +52,17 @@ public class PooApplication {
 
         switch (opcao) {
             case 1:
-                MenuVisitante menuVisitante = new MenuVisitante();
-                menuVisitante.exibirMenu();
-                break;
+            MenuVisitante menuVisitante = new MenuVisitante();
+            menuVisitante.exibirMenu();
+            break;
             case 2:
-                MenuFuncionario menuFuncionario = new MenuFuncionario();
-                menuFuncionario.exibirMenu();
-                break;
+            MenuFuncionario menuFuncionario = new MenuFuncionario();
+            menuFuncionario.exibirMenu();
+            break;
             case 3:
-                MenuGestor menuGestor = new MenuGestor();
-                menuGestor.exibirMenu();
-                break;
+            MenuGestor menuGestor = new MenuGestor();
+            menuGestor.exibirMenu();
+            break;
             case 4:
                 cadastrarUsuario();
                 break;
