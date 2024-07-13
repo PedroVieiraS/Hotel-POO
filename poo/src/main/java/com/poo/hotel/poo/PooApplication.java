@@ -13,13 +13,12 @@ public class PooApplication {
         Cliente.gerarClientes();
         Reserva.gerarReservas();
 
-        while (true) {
+         
             exibirMenuInicial();
-        }
+        
     }
 
-    public class LimpaTerminal {
-        static void limpa_windows() {
+        public static void limpa_windows() {
             try {
                 if (System.getProperty("os.name").contains("Windows")) {
                     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -30,14 +29,20 @@ public class PooApplication {
                 e.printStackTrace();
             }
         }
-    }
 
     private static void exibirMenuInicial() {
+
+        boolean repete = true;
+        
         System.out.println("###########################################");
         System.out.println("###                                     ###");
         System.out.println("###         BEM VINDO AO HOTEL HABBO    ###");
         System.out.println("###                                     ###");
         System.out.println("###########################################");
+
+        while(repete){ 
+
+        limpa_windows();
         System.out.println();
         System.out.println("### MENU INICIAL ###");
         System.out.println("1. Menu Visitante");
@@ -67,15 +72,17 @@ public class PooApplication {
                 cadastrarUsuario();
                 break;
             case 5:
-                Reserva.listarReservas();
+                // Reserva.listarReservas();
+                System.out.println("Saindo do sistema...");
+                repete = false;
                 break;
             case 6:
-                System.out.println("Saindo do sistema...");
-                System.exit(0);
+
                 break;
             default:
                 System.out.println("Opção inválida!");
                 break;
+            }
         }
     }
 

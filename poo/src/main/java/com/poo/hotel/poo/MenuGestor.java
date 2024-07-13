@@ -21,6 +21,7 @@ public class MenuGestor {
 
         if (Login.autenticar(login, senha, "gestor")) {
             System.out.println("Login realizado com sucesso!");
+            PooApplication.limpa_windows();
             exibirOpcoesGestor();
         } else {
             System.out.println("Credenciais inválidas. Acesso negado.");
@@ -77,6 +78,8 @@ public class MenuGestor {
         }
 
         System.out.println("Faturamento total do hotel: R$ " + faturamentoTotal);
+
+        
     }
 
     private void verificarVacancia() {

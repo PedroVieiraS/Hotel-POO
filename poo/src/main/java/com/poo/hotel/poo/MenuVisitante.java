@@ -132,5 +132,6 @@ public class MenuVisitante {
         AvaliacaoQualidade avaliacao = new AvaliacaoQualidade(quarto, banheiro, limpeza, localidade, cafe, 0);
         avaliacoes.add(avaliacao);
         System.out.println("Avaliações de qualidade da hospedagem registradas com sucesso!");
+        
     }
 }

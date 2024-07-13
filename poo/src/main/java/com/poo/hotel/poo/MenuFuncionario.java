@@ -24,44 +24,61 @@ public class MenuFuncionario {
     }
 
     private void exibirOpcoesFuncionario() {
-        System.out.println("### MENU FUNCIONÁRIO ###");
-        System.out.println("1. Lançar serviço de quarto");
-        System.out.println("2. Ver reservas realizadas");
-        System.out.println("3. Tipo de serviço de quarto");
-        System.out.println("4. Sair");
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+        boolean continuar = true;
 
-        switch (opcao) {
-            case 1:
-                lancarServicoQuarto();
-                break;
-            case 2:
-                Reserva.listarReservas();
-                break;
-            case 3:
-                MenuServico menuServico = new MenuServico();
-                menuServico.exibirMenu();
-                break;
+        while (continuar) {
+            System.out.println("### MENU FUNCIONÁRIO ###");
+            System.out.println("1. Lançar serviço de quarto");
+            System.out.println("2. Ver reservas realizadas");
+            System.out.println("3. Tipo de serviço de quarto");
+            System.out.println("4. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
 
-            case 4:
-                System.out.println("Saindo do menu funcionário...");
-                break;
-            default:
-                System.out.println("Opção inválida!");
-                break;
+            switch (opcao) {
+                case 1:
+                    boolean sucesso = lancarServicoQuarto();
+                    if (sucesso) {
+                        System.out.println("Serviço de quarto lançado com sucesso!");
+                    } else {
+                        System.out.println("Erro ao lançar serviço de quarto.");
+                    }
+                    break;
+                case 2:
+                    Reserva.listarReservas();
+                    break;
+                case 3:
+                    MenuServico menuServico = new MenuServico();
+                    menuServico.exibirMenu();
+                    break;
+                case 4:
+                    continuar = false;
+                    System.out.println("Saindo do menu funcionário...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
         }
+
+        System.out.println("Encerrando menu funcionário...");
     }
 
-    private void lancarServicoQuarto() {
+    private boolean lancarServicoQuarto() {
         System.out.println("### LANÇAR SERVIÇO DE QUARTO ###");
         System.out.print("Digite a descrição do serviço: ");
         String descricao = scanner.nextLine();
 
-        ServicoQuarto servicoQuarto = new ServicoQuarto(descricao);
-        BancoDeDados.adicionarServicoQuarto(servicoQuarto);
-
-        System.out.println("Serviço de quarto lançado com sucesso: " + descricao);
+        // Simulação de lançamento do serviço de quarto
+        try {
+            // Lógica para adicionar o serviço de quarto ao banco de dados (simulado)
+            BancoDeDados.adicionarServicoQuarto(new ServicoQuarto(descricao));
+            System.out.println("Serviço de quarto lançado com sucesso: " + descricao);
+            return true; // Retorna true se o serviço foi lançado com sucesso
+        } catch (Exception e) {
+            System.out.println("Erro ao lançar serviço de quarto: " + e.getMessage());
+            return false; // Retorna false se houve algum problema ao lançar o serviço
+        }
     }
 }
