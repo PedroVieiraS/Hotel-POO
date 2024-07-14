@@ -24,33 +24,37 @@ public class MenuFuncionario {
     }
 
     private void exibirOpcoesFuncionario() {
-        System.out.println("### MENU FUNCIONÁRIO ###");
-        System.out.println("1. Lançar serviço de quarto");
-        System.out.println("2. Ver reservas realizadas");
-        System.out.println("3. Tipo de serviço de quarto");
-        System.out.println("4. Sair");
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+        boolean continuar = true;
 
-        switch (opcao) {
-            case 1:
-                lancarServicoQuarto();
-                break;
-            case 2:
-                Reserva.listarReservas();
-                break;
-            case 3:
-                MenuServico menuServico = new MenuServico();
-                menuServico.exibirMenu();
-                break;
+        while (continuar) {
+            System.out.println("### MENU FUNCIONÁRIO ###");
+            System.out.println("1. Lançar serviço de quarto");
+            System.out.println("2. Ver reservas realizadas");
+            System.out.println("3. Tipo de serviço de quarto");
+            System.out.println("4. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
 
-            case 4:
-                System.out.println("Saindo do menu funcionário...");
+            switch (opcao) {
+                case 1:
+                    lancarServicoQuarto();
+                    break;
+                case 2:
+                    Reserva.listarReservas();
+                    break;
+                case 3:
+                    MenuServico menuServico = new MenuServico();
+                    menuServico.exibirMenu();
                 break;
-            default:
-                System.out.println("Opção inválida!");
-                break;
+                case 4:
+                    continuar = false;
+                    System.out.println("Saindo do menu funcionário...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
         }
     }
 
