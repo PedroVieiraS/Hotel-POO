@@ -30,35 +30,40 @@ public class MenuVisitante {
     }
 
     private void exibirOpcoesVisitante() {
-        System.out.println("### MENU VISITANTE ###");
-        System.out.println("1. Realizar reserva");
-        System.out.println("2. Avaliar atendimento");
-        System.out.println("3. Avaliar qualidade da hospedagem");
-        System.out.println("4. Ver reservas realizadas");
-        System.out.println("5. Sair");
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+        boolean continuar = true;
 
-        switch (opcao) {
-            case 1:
-                realizarReserva();
-                break;
-            case 2:
-                avaliarAtendimento();
-                break;
-            case 3:
-                avaliarQualidadeHospedagem();
-                break;
-            case 4:
-                Reserva.listarReservas();
-                break;
-            case 5:
-                System.out.println("Saindo do menu visitante...");
-                break;
-            default:
-                System.out.println("Opção inválida!");
-                break;
+        while (continuar) {
+            System.out.println("### MENU VISITANTE ###");
+            System.out.println("1. Realizar reserva");
+            System.out.println("2. Avaliar atendimento");
+            System.out.println("3. Avaliar qualidade da hospedagem");
+            System.out.println("4. Ver reservas realizadas");
+            System.out.println("5. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    realizarReserva();
+                    break;
+                case 2:
+                    avaliarAtendimento();
+                    break;
+                case 3:
+                    avaliarQualidadeHospedagem();
+                    break;
+                case 4:
+                    Reserva.listarReservas();
+                    break;
+                case 5:
+                    continuar = false;
+                    System.out.println("Saindo do menu visitante...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
         }
     }
 
