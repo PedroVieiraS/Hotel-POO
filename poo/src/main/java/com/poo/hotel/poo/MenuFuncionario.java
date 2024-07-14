@@ -54,9 +54,8 @@ public class MenuFuncionario {
         }
     }
 
-    System.out.println("Encerrando menu funcionário...");
+    //System.out.println("Encerrando menu funcionário...");
 
-    
 
     private boolean lancarServicoQuarto() {
         System.out.println("### LANÇAR SERVIÇO DE QUARTO ###");
@@ -67,5 +66,6 @@ public class MenuFuncionario {
         BancoDeDados.adicionarServicoQuarto(servicoQuarto);
 
         System.out.println("Serviço de quarto lançado com sucesso: " + descricao);
+        return false;
     }
 }

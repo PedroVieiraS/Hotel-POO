@@ -13,22 +13,21 @@ public class PooApplication {
         Reserva.gerarReservas();
 
          
-            exibirMenuInicial();
+        exibirMenuInicial();
         
     }
 
-    public static class LimpaTerminal {
-        public static void limpaWindows() {
-            try {
-                if (System.getProperty("os.name").contains("Windows")) {
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                } else {
-                    System.out.println("Este comando só funciona no Windows.");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+    static void limpa_windows() {
+		try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.println("Este comando só funciona no Windows.");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+	}
 
     private static void exibirMenuInicial() {
 
@@ -42,7 +41,7 @@ public class PooApplication {
 
         while(repete){ 
 
-        limpaWindows();
+        limpa_windows();
         System.out.println();
         System.out.println("### MENU INICIAL ###");
         System.out.println("1. Menu Visitante");
