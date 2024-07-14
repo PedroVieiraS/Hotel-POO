@@ -21,6 +21,7 @@ public class MenuVisitante {
         String senha = scanner.nextLine();
 
         if (Login.autenticar(login, senha, "visitante")) {
+            PooApplication.limpa_windows();
             System.out.println("Login realizado com sucesso!");
             exibirOpcoesVisitante();
         } else {

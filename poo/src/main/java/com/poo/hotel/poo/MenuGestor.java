@@ -29,39 +29,44 @@ public class MenuGestor {
     }
 
     private void exibirOpcoesGestor() {
-        System.out.println("### MENU GESTOR ###");
-        System.out.println("1. Verificar faturamento do hotel");
-        System.out.println("2. Verificar nível de vacância");
-        System.out.println("3. Verificar dias da semana de menor vacância");
-        System.out.println("4. Verificar indicadores de desempenho");
-        System.out.println("5. Ver reservas realizadas");
-        System.out.println("6. Sair");
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+        boolean continuar = true;
 
-        switch (opcao) {
-            case 1:
-                verificarFaturamento();
-                break;
-            case 2:
-                verificarVacancia();
-                break;
-            case 3:
-                verificarDiasMenorVacancia();
-                break;
-            case 4:
-                verificarIndicadoresDesempenho();
-                break;
-            case 5:
-                Reserva.listarReservas();
-                break;
-            case 6:
-                System.out.println("Saindo do menu gestor...");
-                break;
-            default:
-                System.out.println("Opção inválida!");
-                break;
+        while (continuar) {
+            System.out.println("### MENU GESTOR ###");
+            System.out.println("1. Verificar faturamento do hotel");
+            System.out.println("2. Verificar nível de vacância");
+            System.out.println("3. Verificar dias da semana de menor vacância");
+            System.out.println("4. Verificar indicadores de desempenho");
+            System.out.println("5. Ver reservas realizadas");
+            System.out.println("6. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    verificarFaturamento();
+                    break;
+                case 2:
+                    verificarVacancia();
+                    break;
+                case 3:
+                    verificarDiasMenorVacancia();
+                    break;
+                case 4:
+                    verificarIndicadoresDesempenho();
+                    break;
+                case 5:
+                    Reserva.listarReservas();
+                    break;
+                case 6:
+                    continuar = false;
+                    System.out.println("Saindo do menu gestor...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
         }
     }
 
@@ -77,8 +82,8 @@ public class MenuGestor {
             faturamentoTotal += diasHospedados * precoPorDia;
         }
 
-        System.out.println("Faturamento total do hotel: R$ " + faturamentoTotal);
-
+        System.out.println("Faturamento total do hotel: R$ " + faturamentoTotal );
+        System.out.println();
         
     }
 
@@ -101,6 +106,7 @@ public class MenuGestor {
         System.out.println("Quartos ocupados: " + quartosOcupados);
         System.out.println("Quartos vagos: " + quartosVagos);
         System.out.println("Taxa de vacância: " + taxaVacancia + "%");
+        System.out.println();
     }
 
     private void verificarDiasMenorVacancia() {
@@ -134,6 +140,7 @@ public class MenuGestor {
         }
 
         System.out.println("Dia da semana com menor vacância: " + diaMenorVacancia + " com " + menorOcupacao + " quartos ocupados.");
+        System.out.println();
     }
 
     private void verificarIndicadoresDesempenho() {
@@ -142,5 +149,6 @@ public class MenuGestor {
         verificarFaturamento();
         verificarVacancia();
         verificarDiasMenorVacancia();
+        System.out.println();
     }
 }

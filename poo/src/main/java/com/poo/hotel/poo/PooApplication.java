@@ -12,7 +12,6 @@ public class PooApplication {
         Cliente.gerarClientes();
         Reserva.gerarReservas();
 
-         
         exibirMenuInicial();
         
     }
@@ -30,7 +29,7 @@ public class PooApplication {
 	}
 
     private static void exibirMenuInicial() {
-
+        limpa_windows();
         boolean repete = true;
         
         System.out.println("###########################################");
@@ -41,7 +40,7 @@ public class PooApplication {
 
         while(repete){ 
 
-        limpa_windows();
+        
         System.out.println();
         System.out.println("### MENU INICIAL ###");
         System.out.println("1. Menu Visitante");
@@ -72,7 +71,7 @@ public class PooApplication {
                 cadastrarUsuario();
                 break;
             case 5:
-                // Reserva.listarReservas();
+                Reserva.listarReservas();
                 break;
             case 6:
                 System.out.println("Saindo do sistema...");
@@ -98,5 +97,6 @@ public class PooApplication {
         } else {
             System.out.println("Falha no cadastro do usuário.");
         }
-    }
+    } 
+    
 }
