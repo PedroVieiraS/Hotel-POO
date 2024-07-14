@@ -73,11 +73,10 @@ public class PooApplication {
                 break;
             case 5:
                 // Reserva.listarReservas();
-                System.out.println("Saindo do sistema...");
-                repete = false;
                 break;
             case 6:
-
+                System.out.println("Saindo do sistema...");
+                repete = false;
                 break;
             default:
                 System.out.println("Opção inválida!");
