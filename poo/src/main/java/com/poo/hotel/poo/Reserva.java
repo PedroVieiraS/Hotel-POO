@@ -2,6 +2,8 @@ package com.poo.hotel.poo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Reserva {
     public static ArrayList<Reserva> reservas = new ArrayList<>();
@@ -115,4 +117,20 @@ public class Reserva {
             }
         }
     }
+
+    public static void listarReservasPorCliente(Cliente cliente) {
+        List<Reserva> reservasCliente = reservas.stream()
+            .filter(reserva -> reserva.cliente.equals(cliente))
+            .collect(Collectors.toList());
+
+        for (Reserva reserva : reservasCliente) {
+            System.out.println(reserva);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Reserva [cliente= " + cliente.getNome() + " " + quarto + "; Data da Reserva= " + checkIn + "]";
+    }
+
 }

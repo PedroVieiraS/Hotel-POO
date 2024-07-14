@@ -54,4 +54,10 @@ public class Quarto {
 
         return reservaMaisRecente == null || reservaMaisRecente.getCheckOut() != null;
     }
+
+    @Override
+    public String toString() {
+        return "Quarto numero: " + numero +
+               ". Estado: " + estaLimpo;
+    }
 }

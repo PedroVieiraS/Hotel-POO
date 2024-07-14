@@ -23,6 +23,7 @@ public class MenuVisitante {
         if (Login.autenticar(login, senha, "visitante")) {
             PooApplication.limpa_windows();
             System.out.println("Login realizado com sucesso!");
+            // Definir o cliente logado após autenticação
             exibirOpcoesVisitante();
         } else {
             System.out.println("Credenciais inválidas. Acesso negado.");
@@ -53,8 +54,8 @@ public class MenuVisitante {
                 case 3:
                     avaliarQualidadeHospedagem();
                     break;
-                case 4:
-                    Reserva.listarReservas();
+                case 4:  
+                    verMinhasReservas();
                     break;
                 case 5:
                     continuar = false;
@@ -64,6 +65,23 @@ public class MenuVisitante {
                     System.out.println("Opção inválida!");
                     break;
             }
+        }
+    }
+
+    private void verMinhasReservas() {
+        System.out.println("### VER MINHAS RESERVAS ###");
+        System.out.print("Digite seu CPF: ");
+        String cpf = scanner.nextLine();
+
+        if (validarCPF(cpf)) {
+            Cliente cliente = Cliente.getClienteByCpf(cpf);
+            if (cliente != null) {
+                Reserva.listarReservasPorCliente(cliente);
+            } else {
+                System.out.println("Cliente não encontrado.");
+            }
+        } else {
+            System.out.println("CPF inválido.");
         }
     }
 
