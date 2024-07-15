@@ -133,13 +133,13 @@ public class PooApplication {
                     BancoDeDados.calcularVacancia();
                     break;
                 case 3:
-                    BancoDeDados.verificarDiasMenorVacancia();
+                    //BancoDeDados.verificarDiasMenorVacancia();
                     break;
                 case 4:
                     BancoDeDados.verificarIndicadoresDesempenho();
                     break;
                 case 5:
-                    BancoDeDados.getReservas();
+                    BancoDeDados.verificarTodasAsReservas();
                     break;
                 case 6:
                     sair = false;

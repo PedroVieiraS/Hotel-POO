@@ -403,19 +403,9 @@ public class BancoDeDados {
         }
     }
 
+//*******************************************************************
 
-
-    //**********Menu gestor Verifica Faturamento**********
-
-	public static void verificarDiasMenorVacancia() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'verificarDiasMenorVacancia'");
-	}
-
-	public static void verificarIndicadoresDesempenho() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'verificarIndicadoresDesempenho'");
-	}
+    //**********Menu gestor**********
 
     public static void verificarFaturamento() {
         double totalFaturamento = 0.0;
@@ -455,48 +445,90 @@ public class BancoDeDados {
         }
     }
     
-    //**********Menu gestor Verifica Vacancia**********
     public static void calcularVacancia () {
-    System.out.println("Digite a data de início (dd/MM/yyyy): ");
-    Date dataInicio = lerData();
-    System.out.println("Digite a data de fim (dd/MM/yyyy): ");
-    Date dataFim = lerData();
-
-    calcularNivelVacancia(dataInicio, dataFim);
-    }
+        System.out.println("Digite a data de início (dd/MM/yyyy): ");
+        Date dataInicio = lerData();
+        System.out.println("Digite a data de fim (dd/MM/yyyy): ");
+        Date dataFim = lerData();
     
+        calcularNivelVacancia(dataInicio, dataFim);
+        }
+        
     public static void calcularNivelVacancia(Date dataInicio, Date dataFim) {
-        // Total de quartos disponíveis
-        int totalQuartos = quartos.size();
-        
-        // Contar o número de quartos ocupados no período
-        int quartosOcupados = 0;
-        
-        // Iterar sobre todas as reservas para verificar ocupação no período
-        for (Reserva reserva : reservas) {
-            // Verifica se a reserva se sobrepõe ao período fornecido
-            if (!(dataFim.before(reserva.getDataInicio()) || dataInicio.after(reserva.getDataFim()))) {
-                // Contabiliza o quarto se ele não for contado anteriormente
-                if (reserva.getQuarto().isOcupado()) {
-                    quartosOcupados++;
-                }
+    // Total de quartos disponíveis
+    int totalQuartos = quartos.size();
+    
+    // Contar o número de quartos ocupados no período
+    int quartosOcupados = 0;
+    
+    // Iterar sobre todas as reservas para verificar ocupação no período
+    for (Reserva reserva : reservas) {
+        // Verifica se a reserva se sobrepõe ao período fornecido
+        if (!(dataFim.before(reserva.getDataInicio()) || dataInicio.after(reserva.getDataFim()))) {
+            // Contabiliza o quarto se ele não for contado anteriormente
+            if (reserva.getQuarto().isOcupado()) {
+                quartosOcupados++;
             }
         }
-    
-        // Calcular o número de quartos disponíveis
-        int quartosDisponiveis = totalQuartos - quartosOcupados;
-        
-        // Calcular o nível de vacância
-        double nivelVacancia = (double) quartosDisponiveis / totalQuartos * 100;
-        
-        // Exibir o número de quartos ocupados e disponíveis
-        System.out.println("Total de Quartos: " + totalQuartos);
-        System.out.println("Quartos Ocupados no período: " + quartosOcupados);
-        System.out.println("Quartos Disponíveis no período: " + quartosDisponiveis);
-        System.out.printf("Nível de Vacância para o período: %.2f%%\n", nivelVacancia);
     }
-    
-    //**********Menu gestor Verifica dias da semana de menor vacância**********
 
+    // Calcular o número de quartos disponíveis
+    int quartosDisponiveis = totalQuartos - quartosOcupados;
+    
+    // Calcular o nível de vacância
+    double nivelVacancia = (double) quartosDisponiveis / totalQuartos * 100;
+    
+    // Exibir o número de quartos ocupados e disponíveis
+    System.out.println("Total de Quartos: " + totalQuartos);
+    System.out.println("Quartos Ocupados no período: " + quartosOcupados);
+    System.out.println("Quartos Disponíveis no período: " + quartosDisponiveis);
+    System.out.printf("Nível de Vacância para o período: %.2f%%\n", nivelVacancia);
+    }
+
+    public static void verificarIndicadoresDesempenho() {
+        double receitaTotal = 0.0;
+        int quartosOcupados = 0;
+        int totalQuartos = quartos.size();
+
+        // Calcular a receita total e o número de quartos ocupados
+        for (Reserva reserva : reservas) {
+            double tarifa = obterTarifaPorTipoDeQuarto(reserva.getQuarto().getTipo());
+            long diasDeEstadia = (reserva.getDataFim().getTime() - reserva.getDataInicio().getTime()) / (1000 * 60 * 60 * 24);
+            receitaTotal += tarifa * diasDeEstadia;
+            quartosOcupados++;
+        }
+
+        // Calcula a Taxa de Ocupação
+        double taxaOcupacao = totalQuartos > 0 ? (double) quartosOcupados / totalQuartos * 100 : 0;
+
+        // Calcula a Receita por Quarto Disponível (RevPAR)
+        double revPAR = totalQuartos > 0 ? receitaTotal / totalQuartos : 0;
+
+        // Calcula a Média de Diárias (ADR)
+        double adr = quartosOcupados > 0 ? receitaTotal / quartosOcupados : 0;
+
+        // Exibir indicadores de desempenho
+        System.out.println("\n=== Indicadores de Desempenho ===");
+        System.out.printf("Taxa de Ocupação: %.2f%%\n", taxaOcupacao);
+        System.out.printf("Receita por Quarto Disponível (RevPAR): R$ %.2f\n", revPAR);
+        System.out.printf("Média de Diárias (ADR): R$ %.2f\n", adr);
+    }
+
+    public static void verificarTodasAsReservas() {
+        if (reservas.isEmpty()) {
+            System.out.println("Não há reservas realizadas.");
+        } else {
+            System.out.println("\n=== Todas as Reservas ===");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            for (Reserva reserva : reservas) {
+                System.out.println("Cliente: " + reserva.getCliente().getNome());
+                System.out.println("Quarto: " + reserva.getQuarto().getNumero() + " (" + reserva.getQuarto().getTipo() + ")");
+                System.out.println("Data de entrada: " + dateFormat.format(reserva.getDataInicio()));
+                System.out.println("Data de saída: " + dateFormat.format(reserva.getDataFim()));
+                System.out.println("-------------------------");
+            }
+        }
+    }
 
 }
+    
