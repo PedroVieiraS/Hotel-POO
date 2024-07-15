@@ -122,7 +122,6 @@ public class PooApplication {
             System.out.println("6. Sair");
             System.out.print("Escolha uma opção: ");
 
-
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do scanner
 
@@ -131,7 +130,7 @@ public class PooApplication {
                     BancoDeDados.verificarFaturamento();
                     break;
                 case 2:
-                    BancoDeDados.verificarVacancia();
+                    BancoDeDados.calcularVacancia();
                     break;
                 case 3:
                     BancoDeDados.verificarDiasMenorVacancia();

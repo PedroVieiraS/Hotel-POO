@@ -60,13 +60,13 @@ public class BancoDeDados {
     }
 
     // Métodos para login de Servicos
-    public static boolean verificarCredenciaisServicos(String loginServicos, String senhaServicos) {
-        return loginServicos.equals(loginServicos) && senhaServicos.equals(senhaServicos);
+    public static boolean verificarCredenciaisServicos(String login, String senha) {
+        return login.equals(loginServicos) && senha.equals(senhaServicos);
     }
 
     // Métodos para login de Gestor
-    public static boolean verificarCredenciaisGestor(String loginGestor, String senhaGestor) {
-        return loginGestor.equals(loginGestor) && senhaGestor.equals(senhaGestor);
+    public static boolean verificarCredenciaisGestor(String login, String senha) {
+        return login.equals(loginGestor) && senha.equals(senhaGestor);
     }
 
     private void inicializarQuartos() {
@@ -403,15 +403,9 @@ public class BancoDeDados {
         }
     }
 
-    public static void verificarFaturamento() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'verificarFaturamento'");
-    }
 
-	public static void verificarVacancia() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'verificarVacancia'");
-	}
+
+    //**********Menu gestor Verifica Faturamento**********
 
 	public static void verificarDiasMenorVacancia() {
 		// TODO Auto-generated method stub
@@ -422,4 +416,87 @@ public class BancoDeDados {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'verificarIndicadoresDesempenho'");
 	}
+
+    public static void verificarFaturamento() {
+        double totalFaturamento = 0.0;
+    
+        // Calcular faturamento total com base nas reservas
+        for (Reserva reserva : getReservas()) {
+            // Suponhamos que o valor de uma reserva é calculado com base no tipo do quarto e a duração da estadia
+            double valorReserva = calcularValorReserva(reserva);
+            totalFaturamento += valorReserva;
+        }
+    
+        // Adicionar o valor dos serviços de quarto
+        for (ServicoQuarto servico : getServicosQuarto()) {
+            totalFaturamento += servico.getValor();
+        }
+    
+        // Exibir o total de faturamento
+        System.out.println("Total de faturamento: R$" + String.format("%.2f", totalFaturamento));
+    }
+    
+    private static double calcularValorReserva(Reserva reserva) {
+        // O valor é calculado por noite de estadia
+        long diasDeEstadia = (reserva.getDataFim().getTime() - reserva.getDataInicio().getTime()) / (1000 * 60 * 60 * 24);
+        double tarifaPorNoite = obterTarifaPorTipoDeQuarto(reserva.getQuarto().getTipo());
+        return diasDeEstadia * tarifaPorNoite;
+    }
+    
+    private static double obterTarifaPorTipoDeQuarto(String tipo) {
+        // Tarifas para cada tipo de quarto
+        switch (tipo) {
+            case "Luxo":
+                return 500.0; // Exemplo: R$500 por noite para quartos de luxo
+            case "Standard":
+                return 300.0; // Exemplo: R$300 por noite para quartos standard
+            default:
+                return 200.0; // Valor padrão
+        }
+    }
+    
+    //**********Menu gestor Verifica Vacancia**********
+    public static void calcularVacancia () {
+    System.out.println("Digite a data de início (dd/MM/yyyy): ");
+    Date dataInicio = lerData();
+    System.out.println("Digite a data de fim (dd/MM/yyyy): ");
+    Date dataFim = lerData();
+
+    calcularNivelVacancia(dataInicio, dataFim);
+    }
+    
+    public static void calcularNivelVacancia(Date dataInicio, Date dataFim) {
+        // Total de quartos disponíveis
+        int totalQuartos = quartos.size();
+        
+        // Contar o número de quartos ocupados no período
+        int quartosOcupados = 0;
+        
+        // Iterar sobre todas as reservas para verificar ocupação no período
+        for (Reserva reserva : reservas) {
+            // Verifica se a reserva se sobrepõe ao período fornecido
+            if (!(dataFim.before(reserva.getDataInicio()) || dataInicio.after(reserva.getDataFim()))) {
+                // Contabiliza o quarto se ele não for contado anteriormente
+                if (reserva.getQuarto().isOcupado()) {
+                    quartosOcupados++;
+                }
+            }
+        }
+    
+        // Calcular o número de quartos disponíveis
+        int quartosDisponiveis = totalQuartos - quartosOcupados;
+        
+        // Calcular o nível de vacância
+        double nivelVacancia = (double) quartosDisponiveis / totalQuartos * 100;
+        
+        // Exibir o número de quartos ocupados e disponíveis
+        System.out.println("Total de Quartos: " + totalQuartos);
+        System.out.println("Quartos Ocupados no período: " + quartosOcupados);
+        System.out.println("Quartos Disponíveis no período: " + quartosDisponiveis);
+        System.out.printf("Nível de Vacância para o período: %.2f%%\n", nivelVacancia);
+    }
+    
+    //**********Menu gestor Verifica dias da semana de menor vacância**********
+
+
 }
