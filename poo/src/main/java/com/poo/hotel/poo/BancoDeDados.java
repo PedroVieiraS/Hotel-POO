@@ -66,7 +66,7 @@ public class BancoDeDados {
 
     // Métodos para login de Gestor
     public static boolean verificarCredenciaisGestor(String loginGestor, String senhaGestor) {
-        return loginGestor.equals(loginServicos) && senhaGestor.equals(senhaGestor);
+        return loginGestor.equals(loginGestor) && senhaGestor.equals(senhaGestor);
     }
 
     private void inicializarQuartos() {
@@ -422,9 +422,4 @@ public class BancoDeDados {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'verificarIndicadoresDesempenho'");
 	}
-
-
-
-
-
 }
