@@ -169,16 +169,16 @@ public class PooApplication {
         System.out.println("\n=== Avaliar Hospedagem ===");
     
         System.out.print("Avalie a qualidade da cama (de 1 a 5): ");
-        int qualidadeCama = bancoDeDados.lerAvaliacao();
+        int qualidadeCama = lerAvaliacao();
     
         System.out.print("Avalie a qualidade do banheiro (de 1 a 5): ");
-        int qualidadeBanheiro = bancoDeDados.lerAvaliacao();
+        int qualidadeBanheiro = lerAvaliacao();
     
         System.out.print("Avalie a limpeza (de 1 a 5): ");
-        int limpeza = bancoDeDados.lerAvaliacao();
+        int limpeza = lerAvaliacao();
     
         System.out.print("Avalie a localização (de 1 a 5): ");
-        int localizacao = bancoDeDados.lerAvaliacao();
+        int localizacao = lerAvaliacao();
     
         Avaliacao avaliacao = new Avaliacao(0, qualidadeCama, qualidadeBanheiro, limpeza, localizacao); // Apenas a hospedagem é avaliada
         bancoDeDados.adicionarAvaliacao(avaliacao);
@@ -277,6 +277,7 @@ public class PooApplication {
         }
         return null;
     }
+
 
     private static void loginAdmin() {
         System.out.print("\nLogin de Administrador\n");
