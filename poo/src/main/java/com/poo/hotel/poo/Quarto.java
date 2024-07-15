@@ -26,9 +26,4 @@ public class Quarto {
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
-
-    public static boolean verificarDisponibilidade(Quarto quarto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'verificarDisponibilidade'");
-    }
 }
